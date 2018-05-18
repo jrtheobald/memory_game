@@ -29,7 +29,16 @@ function shuffle(array) {
 }
 
 // TODO: CREATE jQUERY OBJECTS ADD SHUFFLED CARDS TO HTML
+deck = $('.deck');
+card = $('.card');
+
 // TODO: WRITE A LOOP TO ITERATE THROUGH array
+// iteration adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+array.forEach(function(element) {
+  console.log(element);
+});
+
+
 // TODO: ADD FUNCTIONALITY TO LOOP TO CREATE AND ADD HTML
 
 console.log(array);
