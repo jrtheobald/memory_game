@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 
-// TODO: ADD LIST OF CARDS FOR array IN shuffle()
+// LIST OF CARDS FOR array IN shuffle()
 let array = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',  'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
 
 /*
@@ -27,6 +27,10 @@ function shuffle(array) {
     return array;
 
 }
+
+// TODO: CREATE jQUERY OBJECTS ADD SHUFFLED CARDS TO HTML
+// TODO: WRITE A LOOP TO ITERATE THROUGH array
+// TODO: ADD FUNCTIONALITY TO LOOP TO CREATE AND ADD HTML
 
 console.log(array);
 console.log(shuffle(array));
