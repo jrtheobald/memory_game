@@ -30,7 +30,7 @@ function shuffle(array) {
 console.log(array);
 console.log(shuffle(array));
 
-// TODO: CREATE jQUERY OBJECTS ADD SHUFFLED CARDS TO HTML
+
 deck = $('.deck');
 card = $('.card');
 diamond = $('.fa-diamond');
@@ -42,20 +42,29 @@ leaf = $('.fa-leaf');
 bicycle = $('.fa-bicycle');
 bomb = $('.fa-bomb');
 icon = $('.card > i');
+restart = $('.restart');
 
-
+// TODO: CREATE jQUERY OBJECTS ADD SHUFFLED CARDS TO HTML (DONE)
 // TODO: WRITE A LOOP TO ITERATE THROUGH array (HOLD)
 // TODO: LOOP THROUGH CARDS WITH each, REMOVE CLASS (DONE)
 // TODO: ADD FUNCTIONALITY TO LOOP TO CREATE AND ADD HTML (DELETE)
-// TODO: CREATE FOR LOOP TO INDEX OVER array AND ADD CLASS
+// TODO: CREATE FOR LOOP TO INDEX OVER array AND ADD CLASS (DONE)
+// TODO: PUT DECK-CARD-CLASS INTO FUNCTION (DONE)
+
 /* 1. Remove old class
  * 2. Add new class from array
  */
- icon.removeClass();
- icon.each(function() {
-   $(this).addClass(array[1]);
- });
+// Code adapted from http://api.jquery.com/jquery.each/
+makeDeck = function makeDeck() {
+  icon.removeClass();
+  let index = 0;
+  icon.each(function() {
+    $(this).addClass(array[index]);
+    index ++;
+  });
+}
 
+makeDeck();
 
 /*
  * set up the event listener for a card. If a card is clicked:
