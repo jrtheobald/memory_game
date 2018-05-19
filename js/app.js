@@ -27,6 +27,8 @@ function shuffle(array) {
     return array;
 
 } // close of shuffle()
+console.log(array);
+console.log(shuffle(array));
 
 // TODO: CREATE jQUERY OBJECTS ADD SHUFFLED CARDS TO HTML
 deck = $('.deck');
@@ -39,26 +41,20 @@ cube = $('.fa-cube');
 leaf = $('.fa-leaf');
 bicycle = $('.fa-bicycle');
 bomb = $('.fa-bomb');
-icon = $('i');
+icon = $('.card > i');
 
 
-// TODO: WRITE A LOOP TO ITERATE THROUGH array
-// iteration adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
-array.forEach(function(element) {
-  console.log(element); // check for correct looping
-//  card.addClass(element); this does not work
-}); // close of loop
-
-// TODO: ADD FUNCTIONALITY TO LOOP TO CREATE AND ADD HTML
+// TODO: WRITE A LOOP TO ITERATE THROUGH array (HOLD)
+// TODO: LOOP THROUGH CARDS WITH each, REMOVE CLASS (DONE)
+// TODO: ADD FUNCTIONALITY TO LOOP TO CREATE AND ADD HTML (DELETE)
+// TODO: CREATE FOR LOOP TO INDEX OVER array AND ADD CLASS
 /* 1. Remove old class
  * 2. Add new class from array
  */
-// card.children().remove(); this does remove all card children
-
-
-console.log(array);
-console.log(shuffle(array));
-
+ icon.removeClass();
+ icon.each(function() {
+   $(this).addClass(array[1]);
+ });
 
 
 /*
