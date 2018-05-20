@@ -55,7 +55,7 @@ restart = $('.restart');
  * 2. Add new class from array
  */
 // Code adapted from http://api.jquery.com/jquery.each/
-makeDeck = function makeDeck() {
+function makeDeck() {
   icon.removeClass();
   let index = 0;
   icon.each(function() {
@@ -65,6 +65,19 @@ makeDeck = function makeDeck() {
 }
 
 makeDeck();
+
+// TODO: CREATE FUNCTION TO OPEN CARD
+function open() {
+  card.addClass("open show");
+} // this adds open and show to all cards
+
+// TODO: SET UP EVENT LISTENER FOR CARD CLICK
+card.click(function() {
+  $(this).addClass("open show");
+});
+
+// TODO: CREATE LIST FOR OPEN CARDS
+// TODO: CHECK LIST FOR MATCHING CARDS
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -76,5 +89,3 @@ makeDeck();
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
- // TODO: SET UP EVENT LISTENER FOR CARD CLICK
