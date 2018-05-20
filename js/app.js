@@ -66,17 +66,24 @@ function makeDeck() {
 
 makeDeck();
 
-// TODO: CREATE FUNCTION TO OPEN CARD
+// TODO: CREATE FUNCTION TO OPEN CARD (DONE)
 function open() {
   card.addClass("open show");
 } // this adds open and show to all cards
 
-// TODO: SET UP EVENT LISTENER FOR CARD CLICK
+// TODO: SET UP EVENT LISTENER FOR CARD CLICK (DONE)
 card.click(function() {
   $(this).addClass("open show");
+  let open_cards = [];
+  let class_name = $(this).children().attr("class");
+  open_cards.push(class_name);
+  console.log(class_name);
+  console.log(open_cards);
 });
 
-// TODO: CREATE LIST FOR OPEN CARDS
+// TODO: CREATE LIST FOR OPEN CARDS (Current)
+
+
 // TODO: CHECK LIST FOR MATCHING CARDS
 
 /*
