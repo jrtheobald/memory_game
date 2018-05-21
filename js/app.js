@@ -72,18 +72,24 @@ function open() {
 } // this adds open and show to all cards
 
 // TODO: SET UP EVENT LISTENER FOR CARD CLICK (DONE)
+let class_name = '';
+let open_cards = [];
 card.click(function() {
-  $(this).addClass("open show");
-  let open_cards = [];
-  let class_name = $(this).children().attr("class");
+  $(this).addClass('open show');
+  class_name = $(this).children().attr("class");
   open_cards.push(class_name);
   console.log(class_name);
-  console.log(open_cards);
 });
-
+console.log(open_cards);
 // TODO: CREATE LIST FOR OPEN CARDS (Current)
+function listCards() {
+  class_name = card.children().attr("class");
+  open_cards.push(class_name);
+  return open_cards;
+  console.log(open_cards);
+}
 
-
+listCards();
 // TODO: CHECK LIST FOR MATCHING CARDS
 
 /*
