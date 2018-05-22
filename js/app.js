@@ -72,20 +72,27 @@ function open() {
 } // this adds open and show to all cards
 
 // TODO: SET UP EVENT LISTENER FOR CARD CLICK (DONE)
-let class_name = '';
-let open_cards = [];
+
 card.click(function() {
   $(this).addClass('open show');
   class_name = $(this).children().attr("class");
-  open_cards.push(class_name);
   console.log(class_name);
 });
-console.log(open_cards);
-// TODO: CREATE LIST FOR OPEN CARDS (Current)
-function listCards() {
 
+// TODO: CREATE LIST FOR OPEN CARDS (Current)
+// Adapted from https://stackoverflow.com/a/9647999
+let open_cards = [];
+function listCards() {
+  card.each(function () {
+    if (card.hasClass("open")) {
+    open_cards.push(icon.attr("class"));
+  }
+  });
+  return open_cards;
 }
 
+listCards()
+console.log(open_cards);
 
 // TODO: CHECK LIST FOR MATCHING CARDS
 
