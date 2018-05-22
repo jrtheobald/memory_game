@@ -83,13 +83,10 @@ card.click(function() {
 console.log(open_cards);
 // TODO: CREATE LIST FOR OPEN CARDS (Current)
 function listCards() {
-  class_name = card.children().attr("class");
-  open_cards.push(class_name);
-  return open_cards;
-  console.log(open_cards);
+
 }
 
-listCards();
+
 // TODO: CHECK LIST FOR MATCHING CARDS
 
 /*
