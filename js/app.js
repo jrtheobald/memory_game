@@ -33,6 +33,7 @@ console.log(shuffle(array));
 
 deck = $('.deck');
 card = $('.card');
+openCard = $('.card .open');
 diamond = $('.fa-diamond');
 paperPlane = $('.fa-paper-plane-o');
 anchor = $('.fa-anchor');
@@ -75,25 +76,25 @@ function open() {
 
 card.click(function() {
   $(this).addClass('open show');
-  class_name = $(this).children().attr("class");
-  console.log(class_name);
+  //class_name = $(this).children().attr("class"); //test
+  //console.log(class_name); //test
 });
 
 // TODO: CREATE LIST FOR OPEN CARDS (Current)
 // Adapted from https://stackoverflow.com/a/9647999
-let open_cards = [];
+//let open_cards = [];
+let openCards = [];
 function listCards() {
   card.each(function () {
-    if (card.hasClass("open")) {
-    open_cards.push(icon.attr("class"));
-  }
+//    open_cards.push(icon.attr("class"));
+    openCards.push(icon.attr("class"));
   });
-  return open_cards;
+  return openCards;
+//  return open_cards;
 }
-
-listCards()
-console.log(open_cards);
-
+listCards() //test
+//console.log(open_cards); //test
+console.log(openCards);
 // TODO: CHECK LIST FOR MATCHING CARDS
 
 /*
