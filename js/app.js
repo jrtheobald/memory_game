@@ -68,7 +68,9 @@ function makeDeck() {
 makeDeck();
 
 // TODO: CREATE FUNCTION TO OPEN CARD (DONE)
-
+function open() {
+  $(this).addClass("open show");
+} // this adds open and show to all cards
 
 // TODO: SET UP EVENT LISTENER FOR CARD CLICK (DONE)
 let openCards = [];
@@ -89,15 +91,13 @@ console.log(openCards);
 function listCards() {
   let open_cards = [];
   card.click(function() {
-    $(this).each(function () {
+    card.each(function () {
       open_cards.push(icon.attr("class"));
     });
-    return open_cards;
-  });
-  console.log(open_cards);
+return open_cards;
 }
 listCards() //test
-
+  console.log(open_cards);
 
 
 // TODO: CHECK LIST FOR MATCHING CARDS
