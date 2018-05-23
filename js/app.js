@@ -5,6 +5,20 @@
 // LIST OF CARDS FOR array IN shuffle()
 let array = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',  'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
 
+deck = $('.deck');
+card = $('.card');
+openCard = $('.card .open');
+diamond = $('.fa-diamond');
+paperPlane = $('.fa-paper-plane-o');
+anchor = $('.fa-anchor');
+bolt = $('.fa-bolt');
+cube = $('.fa-cube');
+leaf = $('.fa-leaf');
+bicycle = $('.fa-bicycle');
+bomb = $('.fa-bomb');
+icon = $('.card > i');
+restart = $('.restart');
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -30,28 +44,6 @@ function shuffle(array) {
 console.log(array); //test
 console.log(shuffle(array)); //test
 
-
-deck = $('.deck');
-card = $('.card');
-openCard = $('.card .open');
-diamond = $('.fa-diamond');
-paperPlane = $('.fa-paper-plane-o');
-anchor = $('.fa-anchor');
-bolt = $('.fa-bolt');
-cube = $('.fa-cube');
-leaf = $('.fa-leaf');
-bicycle = $('.fa-bicycle');
-bomb = $('.fa-bomb');
-icon = $('.card > i');
-restart = $('.restart');
-
-// TODO: CREATE jQUERY OBJECTS ADD SHUFFLED CARDS TO HTML (DONE)
-// TODO: WRITE A LOOP TO ITERATE THROUGH array (HOLD)
-// TODO: LOOP THROUGH CARDS WITH each, REMOVE CLASS (DONE)
-// TODO: ADD FUNCTIONALITY TO LOOP TO CREATE AND ADD HTML (DELETE)
-// TODO: CREATE FOR LOOP TO INDEX OVER array AND ADD CLASS (DONE)
-// TODO: PUT DECK-CARD-CLASS INTO FUNCTION (DONE)
-
 /* 1. Remove old class
  * 2. Add new class from array
  */
@@ -67,20 +59,17 @@ function makeDeck() {
 
 makeDeck();
 
-// TODO: CREATE FUNCTION TO OPEN CARD (DONE)
-// TODO: SET UP EVENT LISTENER FOR CARD CLICK (DONE)
+
+
+// TODO: CREATE LIST FOR OPEN CARDS (Current)
+// TODO: WRITE A LOOP TO ITERATE THROUGH array (HOLD)
+// TODO: CHECK LIST FOR MATCHING CARDS
+
+
 
 card.click(function() {
   $(this).addClass('open show');
 });
-
-// TODO: CREATE LIST FOR OPEN CARDS (Current)
-// Adapted from https://stackoverflow.com/a/9647999
-
-
-
-
-// TODO: CHECK LIST FOR MATCHING CARDS
 
 /*
  * set up the event listener for a card. If a card is clicked:
