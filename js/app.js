@@ -27,8 +27,8 @@ function shuffle(array) {
     return array;
 
 } // close of shuffle()
-//console.log(array); //test
-//console.log(shuffle(array)); //test
+console.log(array); //test
+console.log(shuffle(array)); //test
 
 
 deck = $('.deck');
@@ -68,36 +68,16 @@ function makeDeck() {
 makeDeck();
 
 // TODO: CREATE FUNCTION TO OPEN CARD (DONE)
-function open() {
-  $(this).addClass("open show");
-} // this adds open and show to all cards
-
 // TODO: SET UP EVENT LISTENER FOR CARD CLICK (DONE)
-let openCards = [];
+
 card.click(function() {
   $(this).addClass('open show');
 });
-
-card.click(function() {
-  $(this).push(icon.attr("class"));
-})
-
-console.log(openCards);
 
 // TODO: CREATE LIST FOR OPEN CARDS (Current)
 // Adapted from https://stackoverflow.com/a/9647999
 
 
-function listCards() {
-  let open_cards = [];
-  card.click(function() {
-    card.each(function () {
-      open_cards.push(icon.attr("class"));
-    });
-return open_cards;
-}
-listCards() //test
-  console.log(open_cards);
 
 
 // TODO: CHECK LIST FOR MATCHING CARDS
