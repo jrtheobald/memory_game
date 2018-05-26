@@ -50,15 +50,19 @@ console.log(shuffle(array)); //test
 // Code adapted from http://api.jquery.com/jquery.each/
 function makeDeck() {
   icon.removeClass();
+
   let index = 0;
   icon.each(function() {
     $(this).addClass(array[index]);
     index ++;
   });
+
+  card.each(function() {
+    $(this).prop("symbol", array[index]);
+  });
 }
 
 makeDeck();
-
 
 
 // TODO: CREATE LIST FOR OPEN CARDS (HOLD)
@@ -86,6 +90,18 @@ function closeCard() {
 }
 
 closeCard();
+
+// // Taken from https://stackoverflow.com/a/964178, must modify
+// function getClass() {
+//   card.click(function() {
+//      let myClass = $(this).attr("card-icon");
+//      alert(myClass);
+//   });
+// }
+//
+// getClass();
+
+
 
 
 /*
