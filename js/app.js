@@ -74,18 +74,25 @@ function clickCount() {
       console.log("clicks: " + numClickedCards);
       $(this).addClass('open show');
     });
-  } else if (numClickedCards >= 2) {
+  }
+  return numClickedCards;
+}
+
+function closeCard() {
+  if (numClickedCards >= 2) {
     card.click(function() {
       console.log("Two or more clicks: " + numClickedCards);
       $(this).toggleClass('open show');
     });
 
-  //  numClickedCards -= 1;
   }
-    console.log("Number of Cards Clicked: " + numClickedCards);
+  return numClickedCards;
 }
 
+
+
 clickCount();
+closeCard();
 
 console.log(numClickedCards);
 
