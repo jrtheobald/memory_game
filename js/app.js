@@ -65,43 +65,28 @@ makeDeck();
 // TODO: WRITE A LOOP TO ITERATE THROUGH array (HOLD)
 // TODO: CHECK LIST FOR MATCHING CARDS
 // TODO: TURN ONLY TWO CARDS (Current)
+
+
 let numClickedCards = 0;
-
+// Count card clicks
 function clickCount() {
-  if (numClickedCards < 2) {
-    card.click(function() {
-      numClickedCards += 1;
-      console.log("clicks: " + numClickedCards);
-      $(this).addClass('open show');
-    });
-  }
+  card.click(function() {
+    numClickedCards += 1;
+    console.log("clicks: " + numClickedCards);
+  });
   return numClickedCards;
 }
-
-function closeCard() {
-  if (numClickedCards >= 2) {
-    card.click(function() {
-      console.log("Two or more clicks: " + numClickedCards);
-      $(this).toggleClass('open show');
-    });
-
-  }
-  return numClickedCards;
-}
-
-
-
 clickCount();
+
+// Toggle card class open show
+function closeCard() {
+  card.click(function() {
+    $(this).toggleClass('open show');
+  });
+}
+
 closeCard();
 
-console.log(numClickedCards);
-
-// if (!numClickedCards === 2) {
-//   console.log("Two cards are open");
-//   card.click(function() {
-//     $(this).toggleClass('open show');
-//   });
-// }
 
 /*
  * set up the event listener for a card. If a card is clicked:
