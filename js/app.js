@@ -67,16 +67,25 @@ makeDeck();
 // TODO: TURN ONLY TWO CARDS (Current)
 let numClickedCards = 0;
 
-card.click(function() {
-  if (numClickedCards === 0) {
-    $(this).addClass('open show');
-    numClickedCards += 1;
-  } else {
-    $(this).toggleClass('open show');
+function clickCount() {
+  if (numClickedCards < 2) {
+    card.click(function() {
+      numClickedCards += 1;
+      console.log("clicks: " + numClickedCards);
+      $(this).addClass('open show');
+    });
+  } else if (numClickedCards >= 2) {
+    card.click(function() {
+      console.log("Two or more clicks: " + numClickedCards);
+      $(this).toggleClass('open show');
+    });
+
   //  numClickedCards -= 1;
   }
-  console.log("Number of Cards Clicked: " + numClickedCards)
-});
+    console.log("Number of Cards Clicked: " + numClickedCards);
+}
+
+clickCount();
 
 console.log(numClickedCards);
 
