@@ -7,8 +7,7 @@ let array = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',  'fa fa-bol
 
 let deck = $('.deck');
 let card = $('.card');
-let openCard = $('.card.open.show');
-let diamond = $('.fa-diamond');
+//let diamond = $('.fa-diamond'); // this does not work, idky
 paperPlane = $('.fa-paper-plane-o');
 anchor = $('.fa-anchor');
 bolt = $('.fa-bolt');
@@ -18,7 +17,8 @@ bicycle = $('.fa-bicycle');
 bomb = $('.fa-bomb');
 icon = $('.card > i');
 restart = $('.restart');
-
+let openCards = [];
+let numClickedCards = 0;
 
 /*
  * Display the cards on the page
@@ -75,7 +75,7 @@ makeDeck();
 *
 ********************************************************************/
 
-let numClickedCards = 0;
+
 // Count card clicks
 function clickCount() {
   card.click(function() {
@@ -92,60 +92,57 @@ clickCount();
 *
 ********************************************************************/
 
+// const openCard = $(this).toggleClass('open show'); // this does not work, idky
+
 // Toggle card class open show
 function closeCard() {
   card.click(function() {
+    //openCard; // this does not work, idky
     $(this).toggleClass('open show');
     openCards.push($(this).children().attr('class'));
-    //clickedCard();
+    //clickedCard(); // this does not work, idky
+    checkMatch();
   });
+  //checkMatch();
 }
 
 closeCard();
 ////////////////////////////////////////////////////////////////////
 
-let openCards = [];
-function clickedCard() {
-  $('.card.open.show').children().each(function() {
-    openCards.push($(this).attr('class'));
+function checkMatch() {
+  if (openCards.length < 2) {
+    console.log("no cards open");
+  } else {
+    if (openCards.length === 2) {
+      if (openCards[0] === openCards[1]) {
+        console.log("match");
+        $('.card.open.show').addClass('match').removeClass('open');
+        lockCard();
+        //openCards = [];
+      } else {
+        console.log("try again");
+        hideNoMatch();
+        //$('.card.open.show').removeClass('open show');
+        //openCards = [];
+      }
+      openCards = [];
+    }
+  }
+}
+
+function lockCard() {
+  $('.match').click(function() {
+    $(this).off("click");
   });
 }
 
-//clickedCard();
-
-
-
-
-// // Taken from https://stackoverflow.com/a/964178, must modify
-// function getClass() {
-//   card.click(function() {
-//      let myClass = $(this).attr("card-icon");
-//      alert(myClass);
-//   });
-// }
-//
-// getClass();
-
-// icon.each(function( index ) {
-//   $(this).attr('class');
-// });
-
-// let openCards = [];
-//
-//
-// function cardIcon() {
-//   console.log('getting icon');
-//   let symbol = $(this).attr('class');
-//   return symbol;
-//   console.log(symbol);
-// }
-//
-// card.click(function() {
-//   console.log("card clicked");
-//   cardIcon();
-// })
-
-
+function hideNoMatch() {
+    setTimeout(function() {
+      $('.card.open.show').removeClass('open show');
+    },
+    300
+  );
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
