@@ -19,6 +19,7 @@ icon = $('.card > i');
 restart = $('.restart');
 let openCards = [];
 let numClickedCards = 0;
+let matches = 0;
 
 /*
  * Display the cards on the page
@@ -60,7 +61,7 @@ function makeDeck() {
     $(this).addClass(array[index]);
     index ++;
   });
-}
+} // close of makeDeck
 
 makeDeck();
 ////////////////////////////////////////////////////////////////////
@@ -83,7 +84,7 @@ function clickCount() {
     console.log("clicks: " + numClickedCards);
   });
   return numClickedCards;
-}
+} // close of clickCount
 clickCount();
 ////////////////////////////////////////////////////////////////////
 
@@ -97,14 +98,11 @@ clickCount();
 // Toggle card class open show
 function closeCard() {
   card.click(function() {
-    //openCard; // this does not work, idky
     $(this).toggleClass('open show');
     openCards.push($(this).children().attr('class'));
-    //clickedCard(); // this does not work, idky
     checkMatch();
   });
-  //checkMatch();
-}
+} // close of closeCard, consider renaming this function
 
 closeCard();
 ////////////////////////////////////////////////////////////////////
@@ -118,17 +116,16 @@ function checkMatch() {
         console.log("match");
         $('.card.open.show').addClass('match').removeClass('open');
         lockCard();
-        //openCards = [];
+        matches ++;
+        console.log("Number of matches:" + matches);
       } else {
         console.log("try again");
         hideNoMatch();
-        //$('.card.open.show').removeClass('open show');
-        //openCards = [];
       }
       openCards = [];
     }
   }
-}
+} // close of checkMatch
 
 function lockCard() {
   $('.match').click(function() {
