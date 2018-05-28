@@ -5,10 +5,10 @@
 // LIST OF CARDS FOR array IN shuffle()
 let array = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',  'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
 
-deck = $('.deck');
-card = $('.card');
-openCard = $('.card .open');
-diamond = $('.fa-diamond');
+let deck = $('.deck');
+let card = $('.card');
+let openCard = $('.card.open.show');
+let diamond = $('.fa-diamond');
 paperPlane = $('.fa-paper-plane-o');
 anchor = $('.fa-anchor');
 bolt = $('.fa-bolt');
@@ -18,6 +18,7 @@ bicycle = $('.fa-bicycle');
 bomb = $('.fa-bomb');
 icon = $('.card > i');
 restart = $('.restart');
+
 
 /*
  * Display the cards on the page
@@ -43,33 +44,36 @@ function shuffle(array) {
 } // close of shuffle()
 console.log(array); //test
 console.log(shuffle(array)); //test
-
+/********************************************************************
+*  Create the Deck
+*
+********************************************************************
+/
 /* 1. Remove old class
  * 2. Add new class from array
  */
 // Code adapted from http://api.jquery.com/jquery.each/
 function makeDeck() {
   icon.removeClass();
-
   let index = 0;
   icon.each(function() {
     $(this).addClass(array[index]);
     index ++;
   });
-
-  card.each(function() {
-    $(this).prop("symbol", array[index]);
-  });
 }
 
 makeDeck();
-
+////////////////////////////////////////////////////////////////////
 
 // TODO: CREATE LIST FOR OPEN CARDS (HOLD)
 // TODO: WRITE A LOOP TO ITERATE THROUGH array (HOLD)
 // TODO: CHECK LIST FOR MATCHING CARDS
 // TODO: TURN ONLY TWO CARDS (Current)
 
+/********************************************************************
+*  Count the Number of Mouse Clicks
+*
+********************************************************************/
 
 let numClickedCards = 0;
 // Count card clicks
@@ -81,15 +85,36 @@ function clickCount() {
   return numClickedCards;
 }
 clickCount();
+////////////////////////////////////////////////////////////////////
+
+/********************************************************************
+*  Open Card and Show Icons, add Icon Class to Array
+*
+********************************************************************/
 
 // Toggle card class open show
 function closeCard() {
   card.click(function() {
     $(this).toggleClass('open show');
+    openCards.push($(this).children().attr('class'));
+    //clickedCard();
   });
 }
 
 closeCard();
+////////////////////////////////////////////////////////////////////
+
+let openCards = [];
+function clickedCard() {
+  $('.card.open.show').children().each(function() {
+    openCards.push($(this).attr('class'));
+  });
+}
+
+//clickedCard();
+
+
+
 
 // // Taken from https://stackoverflow.com/a/964178, must modify
 // function getClass() {
@@ -101,6 +126,24 @@ closeCard();
 //
 // getClass();
 
+// icon.each(function( index ) {
+//   $(this).attr('class');
+// });
+
+// let openCards = [];
+//
+//
+// function cardIcon() {
+//   console.log('getting icon');
+//   let symbol = $(this).attr('class');
+//   return symbol;
+//   console.log(symbol);
+// }
+//
+// card.click(function() {
+//   console.log("card clicked");
+//   cardIcon();
+// })
 
 
 
