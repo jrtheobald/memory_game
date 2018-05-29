@@ -21,6 +21,7 @@ let openCards = [];
 let numClickedCards = 0;
 let matches = 0;
 
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -97,6 +98,7 @@ clickCount();
 
 // Toggle card class open show
 function closeCard() {
+
   card.click(function() {
     $(this).toggleClass('open show');
     openCards.push($(this).children().attr('class'));
@@ -140,6 +142,28 @@ function hideNoMatch() {
     300
   );
 }
+
+function goTimer(){
+  let today = new Date();
+  let timerHours = today.getHours();
+  let timerMinutes = today.getMinutes();
+  let timerSeconds = today.getSeconds();
+  let totalSeconds = 0;
+  if(timerSeconds < 10){
+    timerSeconds = "0" + timerSeconds;
+  }
+
+  $("#hours").text(timerHours);
+  $("#minutes").text(timerMinutes);
+  $("#seconds").text(timerSeconds);
+  setTimeout(function() {
+    totalSeconds++;
+    goTimer()
+  }, 250);
+}
+
+goTimer();
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
