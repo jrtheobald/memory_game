@@ -1,6 +1,3 @@
-/*
- * Create a list that holds all of your cards
- */
 
 // LIST OF CARDS FOR array IN shuffle()
 let array = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',  'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
@@ -14,13 +11,7 @@ let numClickedCards = 0;
 let matches = 0;
 let clicksPerMatch = Math.floor(numClickedCards / matches);
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
+// Shuffle the Cards
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -38,14 +29,8 @@ function shuffle(array) {
 } // close of shuffle()
 console.log(array); //test
 console.log(shuffle(array)); //test
-/********************************************************************
-*  Create the Deck
-*
-********************************************************************
-/
-/* 1. Remove old class
- * 2. Add new class from array
- */
+
+//Create the Deck
 // Code adapted from http://api.jquery.com/jquery.each/
 function makeDeck() {
   icon.removeClass();
@@ -57,40 +42,21 @@ function makeDeck() {
 } // close of makeDeck
 
 makeDeck();
-////////////////////////////////////////////////////////////////////
-
-// TODO: CREATE LIST FOR OPEN CARDS (HOLD)
-// TODO: WRITE A LOOP TO ITERATE THROUGH array (HOLD)
-// TODO: CHECK LIST FOR MATCHING CARDS
-// TODO: TURN ONLY TWO CARDS (Current)
-
-/********************************************************************
-*  Count the Number of Mouse Clicks
-*
-********************************************************************/
 
 
+//Count the Number of Mouse Clicks
 // Count card clicks
 function clickCount() {
   card.click(function() {
     numClickedCards += 1;
     console.log("clicks: " + numClickedCards);
-    //starRating();
-    test();
+    starRating();  // this runs on every click?
   });
-  //starRating();
   return numClickedCards;
 } // close of clickCount
 clickCount();
-////////////////////////////////////////////////////////////////////
 
-/********************************************************************
-*  Open Card and Show Icons, add Icon Class to Array
-*
-********************************************************************/
-
-// const openCard = $(this).toggleClass('open show'); // this does not work, idky
-
+//Open Card and Show Icons, add Icon Class to Array
 // Toggle card class open show
 function closeCard() {
   card.click(function() {
@@ -102,8 +68,8 @@ function closeCard() {
 } // close of closeCard, consider renaming this function
 
 closeCard();
-////////////////////////////////////////////////////////////////////
 
+// Check open cards for a match
 function checkMatch() {
   if (openCards.length < 2) {
     console.log("no cards open");
@@ -124,12 +90,14 @@ function checkMatch() {
   }
 } // close of checkMatch
 
+// Disable click on open cards, i.e. lock
 function lockCard() {
   $('.match').click(function() {
     $(this).off("click");
   });
 }
 
+// Hide open cards that don't match
 function hideNoMatch() {
     setTimeout(function() {
       $('.card.open.show').removeClass('open show');
@@ -181,18 +149,25 @@ goTimer();
 //   }
 // //}
 
-function test() {
-  $('deck').click(function() {
-    $('.fa-star').hide();
-  });
-}
-//test();
-
+// Demote Star Rating based on metric
 function starRating() {
-
+  console.log('hello');
+  if (numClickedCards <= 24) {
+    console.log("You rate three stars");
+    $('#one-star').remove();
+  } else if (numClickedCards <= 48) {
+    console.log("You rate two stars")
+    $('#two-star').remove();
+  } else if (numClickedCards <= 96){
+    console.log("You rate one star");
+    $('#three-star').remove();
+  } else {
+    console.log("You rate no stars");
+    $('.star').remove();
+  }
 }
 
-starRating();
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
