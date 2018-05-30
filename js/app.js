@@ -5,22 +5,14 @@
 // LIST OF CARDS FOR array IN shuffle()
 let array = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',  'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
 
-let deck = $('.deck');
-let card = $('.card');
-//let diamond = $('.fa-diamond'); // this does not work, idky
-paperPlane = $('.fa-paper-plane-o');
-anchor = $('.fa-anchor');
-bolt = $('.fa-bolt');
-cube = $('.fa-cube');
-leaf = $('.fa-leaf');
-bicycle = $('.fa-bicycle');
-bomb = $('.fa-bomb');
-icon = $('.card > i');
-restart = $('.restart');
+const deck = $('.deck');
+const card = $('.card');
+const icon = $('.card > i');
+const restart = $('.restart');
 let openCards = [];
 let numClickedCards = 0;
 let matches = 0;
-
+let clicksPerMatch = Math.floor(numClickedCards / matches);
 
 /*
  * Display the cards on the page
@@ -83,7 +75,10 @@ function clickCount() {
   card.click(function() {
     numClickedCards += 1;
     console.log("clicks: " + numClickedCards);
+    //starRating();
+    test();
   });
+  //starRating();
   return numClickedCards;
 } // close of clickCount
 clickCount();
@@ -98,11 +93,11 @@ clickCount();
 
 // Toggle card class open show
 function closeCard() {
-
   card.click(function() {
     $(this).toggleClass('open show');
     openCards.push($(this).children().attr('class'));
     checkMatch();
+    //starRating();
   });
 } // close of closeCard, consider renaming this function
 
@@ -143,6 +138,7 @@ function hideNoMatch() {
   );
 }
 
+// https://stackoverflow.com/a/5517836
 function goTimer(){
   let today = new Date();
   let timerHours = today.getHours();
@@ -164,6 +160,39 @@ function goTimer(){
 
 goTimer();
 
+// function starRating() {
+//   //if (matches > 2) {
+//     switch (clicksPerMatch) {
+//       case 2:
+//       case 3:
+//         console.log("rating is " + clicksPerMatch);
+//         break;
+//       case 4:
+//         $('#three-star').toggleClass('hide');
+//         break;
+//       case 5:
+//       case 6:
+//         $('#three-star').toggleClass('hide');
+//         $('#two-star').toggleClass('hide');
+//         break;
+//       default:
+//         console.log("three stars");
+//     }
+//   }
+// //}
+
+function test() {
+  $('deck').click(function() {
+    $('.fa-star').hide();
+  });
+}
+//test();
+
+function starRating() {
+
+}
+
+starRating();
 
 /*
  * set up the event listener for a card. If a card is clicked:
