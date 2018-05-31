@@ -10,6 +10,8 @@ let openCards = [];
 let numClickedCards = 0;
 let matches = 0;
 let clicksPerMatch = Math.floor(numClickedCards / matches);
+let numMoves = 0;
+let hideTime = 300;
 
 // Shuffle the Cards
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -49,12 +51,15 @@ makeDeck();
 function clickCount() {
   card.click(function() {
     numClickedCards += 1;
+    numMoves = Math.floor(numClickedCards / 2);
     console.log("clicks: " + numClickedCards);
     starRating();  // this runs on every click?
   });
   return numClickedCards;
 } // close of clickCount
 clickCount();
+
+
 
 //Open Card and Show Icons, add Icon Class to Array
 // Toggle card class open show
@@ -71,6 +76,7 @@ closeCard();
 
 // Check open cards for a match
 function checkMatch() {
+  console.log("checking for match")
   if (openCards.length < 2) {
     console.log("no cards open");
   } else {
@@ -86,9 +92,17 @@ function checkMatch() {
         hideNoMatch();
       }
       openCards = [];
+      //updateMoves;
     }
   }
+  updateMoves();
 } // close of checkMatch
+
+function updateMoves() {
+  $('.moves').html(numMoves);
+}
+
+//updateMoves();
 
 // Disable click on open cards, i.e. lock
 function lockCard() {
@@ -102,7 +116,7 @@ function hideNoMatch() {
     setTimeout(function() {
       $('.card.open.show').removeClass('open show');
     },
-    300
+    hideTime
   );
 }
 
@@ -128,42 +142,25 @@ function goTimer(){
 
 goTimer();
 
-// function starRating() {
-//   //if (matches > 2) {
-//     switch (clicksPerMatch) {
-//       case 2:
-//       case 3:
-//         console.log("rating is " + clicksPerMatch);
-//         break;
-//       case 4:
-//         $('#three-star').toggleClass('hide');
-//         break;
-//       case 5:
-//       case 6:
-//         $('#three-star').toggleClass('hide');
-//         $('#two-star').toggleClass('hide');
-//         break;
-//       default:
-//         console.log("three stars");
-//     }
-//   }
-// //}
 
 // Demote Star Rating based on metric
 function starRating() {
-  console.log('hello');
+  console.log('acquiring star rating');
   if (numClickedCards <= 24) {
     console.log("You rate three stars");
-    $('#one-star').remove();
+    //$('.star').show();
   } else if (numClickedCards <= 48) {
-    console.log("You rate two stars")
-    $('#two-star').remove();
+    console.log("You rate two stars");
+    $('#one-star').remove();
+    hideTime = 240;
   } else if (numClickedCards <= 96){
     console.log("You rate one star");
-    $('#three-star').remove();
+    $('#two-star').remove();
+    hideTime = 192;
   } else {
     console.log("You rate no stars");
-    $('.star').remove();
+    $('#three-star').remove();
+    hideTime = 154;
   }
 }
 
