@@ -12,7 +12,8 @@ let matches = 0;
 let clicksPerMatch = Math.floor(numClickedCards / matches);
 let numMoves = 0;
 let hideTime = 300;
-let win = false;
+//let win = false;
+let gameTimeBegin = new Date();
 
 // Shuffle the Cards
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -119,28 +120,6 @@ function hideNoMatch() {
   );
 }
 
-// https://stackoverflow.com/a/5517836
-function goTimer(){
-  let today = new Date();
-  let timerHours = today.getHours();
-  let timerMinutes = today.getMinutes();
-  let timerSeconds = today.getSeconds();
-  let totalSeconds = 0;
-  if(timerSeconds < 10){
-    timerSeconds = "0" + timerSeconds;
-  }
-
-  $("#hours").text(timerHours);
-  $("#minutes").text(timerMinutes);
-  $("#seconds").text(timerSeconds);
-  setTimeout(function() {
-    totalSeconds++;
-    goTimer()
-  }, 250);
-}
-
-goTimer();
-
 
 // Demote Star Rating based on metric
 function starRating() {
@@ -163,7 +142,47 @@ function starRating() {
   }
 }
 
+let gameSeconds = 0;
+let gameMinutes = 0;
+let gameHours = 0;
 
+function goTimer() {
+  gameSeconds++;
+  if (gameSeconds >= 60) {
+    gameSeconds = 0;
+    gameMinutes++;
+    if (gameMinutes >= 60) {
+      gameMinutes = 0;
+      gameHours++;
+    }
+  }
+
+  if (gameHours < 10) {
+    gameHours = "0" + gameHours;
+  }
+
+  if (gameMinutes > 9) {
+    gameMinutes = "0" + gameMinutes;
+  }
+
+  if (gameSeconds > 9) {
+    gameSeconds = "0" + gameSeconds;
+  }
+
+  // h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+  $('#hours').text(gameHours);
+  $('#minutes').text(gameMinutes);
+  $('#seconds').text(gameSeconds);
+
+
+  timeOut();
+}
+
+function timeOut() {
+  gameTimeout = setTimeout(goTimer, 1000);
+}
+timeOut();
 
 /*
  * set up the event listener for a card. If a card is clicked:
