@@ -12,6 +12,7 @@ let matches = 0;
 let clicksPerMatch = Math.floor(numClickedCards / matches);
 let numMoves = 0;
 let hideTime = 300;
+let win = false;
 
 // Shuffle the Cards
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -32,7 +33,7 @@ function shuffle(array) {
 console.log(array); //test
 console.log(shuffle(array)); //test
 
-//Create the Deck
+// Create the Deck
 // Code adapted from http://api.jquery.com/jquery.each/
 function makeDeck() {
   icon.removeClass();
@@ -68,7 +69,6 @@ function closeCard() {
     $(this).toggleClass('open show');
     openCards.push($(this).children().attr('class'));
     checkMatch();
-    //starRating();
   });
 } // close of closeCard, consider renaming this function
 
@@ -92,7 +92,6 @@ function checkMatch() {
         hideNoMatch();
       }
       openCards = [];
-      //updateMoves;
     }
   }
   updateMoves();
@@ -102,7 +101,7 @@ function updateMoves() {
   $('.moves').html(numMoves);
 }
 
-//updateMoves();
+
 
 // Disable click on open cards, i.e. lock
 function lockCard() {
