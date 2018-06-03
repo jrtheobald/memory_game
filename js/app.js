@@ -146,6 +146,8 @@ let gameSeconds = 0;
 let gameMinutes = 0;
 let gameHours = 0;
 
+
+//Adapted from https://codepad.co/snippet/YMYUDYgr
 function goTimer() {
   //counts up by minutes and seconds
   gameSeconds++;
