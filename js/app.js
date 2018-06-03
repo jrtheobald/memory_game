@@ -147,6 +147,7 @@ let gameMinutes = 0;
 let gameHours = 0;
 
 function goTimer() {
+  //counts up by minutes and seconds
   gameSeconds++;
   if (gameSeconds >= 60) {
     gameSeconds = 0;
@@ -157,17 +158,32 @@ function goTimer() {
     }
   }
 
-  if (gameHours < 10) {
-    gameHours = "0" + gameHours;
-  }
+    if (gameSeconds) {
+      console.log('we have seconds');
+      if (gameSeconds > 9) {
+        //console.log(gameSeconds + ' > 9');
+      } else {
+        //console.log(gameSeconds + ' < 9');
+        gameSeconds = "0" + gameSeconds;
+        if (gameMinutes) {
+          console.log('we have minutes');
+          if (gameMinutes > 9) {
+            console.log(gameMinutes + ' > 9');
+            //gameMinutes;
+          } else {
+            console.log(gameMinutes + ' < 9');
+            if (gameHours) {
+              console.log('we have hours');
+              if (gameHours > 9) {
+                console.log(gameHour + ' > 9');
+              //gameHours;
+            }
+          }
+          }
+        }
+      }
+    }
 
-  if (gameMinutes > 9) {
-    gameMinutes = "0" + gameMinutes;
-  }
-
-  if (gameSeconds > 9) {
-    gameSeconds = "0" + gameSeconds;
-  }
 
   // h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
