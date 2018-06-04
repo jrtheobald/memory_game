@@ -142,10 +142,11 @@ function starRating() {
   }
 }
 
+
+// Start the Timer
 let gameSeconds = 0;
 let gameMinutes = 0;
 let gameHours = 0;
-
 
 //Adapted from https://codepad.co/snippet/YMYUDYgr
 function goTimer() {
@@ -178,11 +179,36 @@ function goTimer() {
   timeOut();
 }
 
-
+// Begin the countdown for goTimer()
 function timeOut() {
   gameTimeout = setTimeout(goTimer, 1000);
+  return gameTimeout;
 }
 timeOut();
+
+function stopTimer() {
+    clearInterval(gameTimeout);
+}
+
+function box() {
+  alert("You Won!");
+}
+
+function win() {
+  // stop Timer
+  if (matches === 8) {
+    stopTimer();
+    box();
+  }
+  // execute modal with information
+
+
+}
+
+// TODO: Set up clear timeout function to execute upon win
+// TODO: Add an alert to notify of win
+// TODO: Set up win function to stop timer and show modal
+// TODO: Add click listener to reset button
 
 /*
  * set up the event listener for a card. If a card is clicked:
