@@ -142,34 +142,34 @@ function starRating() {
   }
 }
 
+
+// Start the Timer
 let gameSeconds = 0;
 let gameMinutes = 0;
 let gameHours = 0;
 
+//Adapted from https://codepad.co/snippet/YMYUDYgr
 function goTimer() {
+  //counts up by minutes and seconds
   gameSeconds++;
+  console.log("seconds: " + gameSeconds);
   if (gameSeconds >= 60) {
     gameSeconds = 0;
     gameMinutes++;
+    console.log("minutes: " + gameMinutes);
     if (gameMinutes >= 60) {
       gameMinutes = 0;
       gameHours++;
     }
   }
 
-  if (gameHours < 10) {
-    gameHours = "0" + gameHours;
+  if (gameSeconds) {
+    if (gameSeconds > 9) {
+      gameSeconds = `${gameSeconds}`;
+    } else {
+      gameSeconds = `0${gameSeconds}`;
+    }
   }
-
-  if (gameMinutes > 9) {
-    gameMinutes = "0" + gameMinutes;
-  }
-
-  if (gameSeconds > 9) {
-    gameSeconds = "0" + gameSeconds;
-  }
-
-  // h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
   $('#hours').text(gameHours);
   $('#minutes').text(gameMinutes);
@@ -179,10 +179,36 @@ function goTimer() {
   timeOut();
 }
 
+// Begin the countdown for goTimer()
 function timeOut() {
   gameTimeout = setTimeout(goTimer, 1000);
+  return gameTimeout;
 }
 timeOut();
+
+function stopTimer() {
+    clearInterval(gameTimeout);
+}
+
+function box() {
+  alert("You Won!");
+}
+
+function win() {
+  // stop Timer
+  if (matches === 8) {
+    stopTimer();
+    box();
+  }
+  // execute modal with information
+
+
+}
+
+// TODO: Set up clear timeout function to execute upon win
+// TODO: Add an alert to notify of win
+// TODO: Set up win function to stop timer and show modal
+// TODO: Add click listener to reset button
 
 /*
  * set up the event listener for a card. If a card is clicked:
