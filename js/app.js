@@ -1,3 +1,6 @@
+$(document).ready(function() {});
+
+
 // master
 // LIST OF CARDS FOR array IN shuffle()
 let array = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',  'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
@@ -13,7 +16,7 @@ let clicksPerMatch = Math.floor(numClickedCards / matches);
 let numMoves = 0;
 let hideTime = 300;
 //let win = false;
-let gameTimeBegin = new Date();
+//let gameTimeBegin = new Date();
 
 // Shuffle the Cards
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -32,7 +35,7 @@ function shuffle(array) {
 
 } // close of shuffle()
 console.log(array); //test
-console.log(shuffle(array)); //test
+//console.log(shuffle(array)); //test
 
 // Create the Deck
 // Code adapted from http://api.jquery.com/jquery.each/
@@ -45,21 +48,25 @@ function makeDeck() {
   });
 } // close of makeDeck
 
-makeDeck();
+//makeDeck();
 
 
 //Count the Number of Mouse Clicks
 // Count card clicks
-function clickCount() {
-  card.click(function() {
-    numClickedCards += 1;
-    numMoves = Math.floor(numClickedCards / 2);
-    console.log("clicks: " + numClickedCards);
-    starRating();  // this runs on every click?
-  });
-  return numClickedCards;
+let play = true;
+function clickCount(play) {
+  if (play) {
+    card.click(function() {
+      numClickedCards += 1;
+      numMoves = Math.floor(numClickedCards / 2);
+      console.log("clicks: " + numClickedCards);
+      starRating();  // this runs on every click?
+    });
+  }
+
+  return numClickedCards, numMoves;
 } // close of clickCount
-clickCount();
+//clickCount(play);
 
 
 
@@ -70,10 +77,11 @@ function closeCard() {
     $(this).toggleClass('open show');
     openCards.push($(this).children().attr('class'));
     checkMatch();
+    win();
   });
 } // close of closeCard, consider renaming this function
 
-closeCard();
+//closeCard();
 
 // Check open cards for a match
 function checkMatch() {
@@ -96,6 +104,7 @@ function checkMatch() {
     }
   }
   updateMoves();
+  //win();
 } // close of checkMatch
 
 function updateMoves() {
@@ -184,26 +193,58 @@ function timeOut() {
   gameTimeout = setTimeout(goTimer, 1000);
   return gameTimeout;
 }
-timeOut();
+//timeOut();
 
+// Stops the timer
 function stopTimer() {
     clearInterval(gameTimeout);
 }
 
+// Shows the alert upon winning
 function box() {
-  alert("You Won!");
+
+  alert(`Congratulations! You Won!
+  All matches found in ${numMoves} moves and ${gameHours}:${gameMinutes}:${gameSeconds}`);
+
+
 }
 
+// Upon win executes stopTimer and box
 function win() {
   // stop Timer
   if (matches === 8) {
+    play = false;
+    $('.deck').click(function() {
+      $(this).off("click");
+    });
     stopTimer();
     box();
+    //makeDeck();
   }
   // execute modal with information
 
 
 }
+
+function gameRestart() {
+  restart.click(function() {
+    icon.toggleClass('open show');
+  });
+}
+
+function playGame() {
+  shuffle(array);
+  makeDeck();
+  clickCount(play);
+  closeCard();
+  timeOut();
+}
+
+$(document).ready(function() {
+  playGame();
+});
+
+
 
 // TODO: Set up clear timeout function to execute upon win
 // TODO: Add an alert to notify of win
