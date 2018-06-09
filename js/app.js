@@ -1,5 +1,3 @@
-$(document).ready(function() {});
-
 
 // master
 // LIST OF CARDS FOR array IN shuffle()
@@ -9,6 +7,7 @@ const deck = $('.deck');
 const card = $('.card');
 const icon = $('.card > i');
 const restart = $('.restart');
+const stars = $('.stars');
 let openCards = [];
 let numClickedCards = 0;
 let matches = 0;
@@ -40,11 +39,13 @@ console.log(array); //test
 // Create the Deck
 // Code adapted from http://api.jquery.com/jquery.each/
 function makeDeck() {
+  console.log('executing makeDeck');
   icon.removeClass();
   let index = 0;
   icon.each(function() {
     $(this).addClass(array[index]);
     index ++;
+    console.log('shuffled cards added');
   });
 } // close of makeDeck
 
@@ -56,6 +57,7 @@ function makeDeck() {
 let play = true;
 function clickCount(play) {
   if (play) {
+    console.log("let's play");
     card.click(function() {
       numClickedCards += 1;
       numMoves = Math.floor(numClickedCards / 2);
@@ -74,6 +76,7 @@ function clickCount(play) {
 // Toggle card class open show
 function closeCard() {
   card.click(function() {
+    console.log('a card was clicked');
     $(this).toggleClass('open show');
     openCards.push($(this).children().attr('class'));
     checkMatch();
@@ -108,6 +111,7 @@ function checkMatch() {
 } // close of checkMatch
 
 function updateMoves() {
+  console.log('updating moves');
   $('.moves').html(numMoves);
 }
 
@@ -115,17 +119,20 @@ function updateMoves() {
 
 // Disable click on open cards, i.e. lock
 function lockCard() {
+  console.log('executing lockCard');
   $('.match').click(function() {
     $(this).off("click");
+    console.log('card locked');
   });
 }
 
 // Hide open cards that don't match
 function hideNoMatch() {
-    setTimeout(function() {
-      $('.card.open.show').removeClass('open show');
-    },
-    hideTime
+  console.log('executing hideNoMatch');
+  setTimeout(function() {
+    $('.card.open.show').removeClass('open show');
+  },
+  hideTime
   );
 }
 
@@ -138,15 +145,15 @@ function starRating() {
     //$('.star').show();
   } else if (numClickedCards <= 48) {
     console.log("You rate two stars");
-    $('#one-star').remove();
+    $('#one-star').hide(); // instead of remove()
     hideTime = 240;
   } else if (numClickedCards <= 96){
     console.log("You rate one star");
-    $('#two-star').remove();
+    $('#two-star').hide(); // instead of remove()
     hideTime = 192;
   } else {
     console.log("You rate no stars");
-    $('#three-star').remove();
+    $('#three-star').hide(); // instead of remove
     hideTime = 154;
   }
 }
@@ -159,6 +166,7 @@ let gameHours = 0;
 
 //Adapted from https://codepad.co/snippet/YMYUDYgr
 function goTimer() {
+  //console.log('executing goTimer');
   //counts up by minutes and seconds
   gameSeconds++;
   console.log("seconds: " + gameSeconds);
@@ -190,6 +198,7 @@ function goTimer() {
 
 // Begin the countdown for goTimer()
 function timeOut() {
+  //console.log('executing timeOut');
   gameTimeout = setTimeout(goTimer, 1000);
   return gameTimeout;
 }
@@ -197,11 +206,13 @@ function timeOut() {
 
 // Stops the timer
 function stopTimer() {
-    clearInterval(gameTimeout);
+  console.log('executing stopTimer');
+  clearInterval(gameTimeout);
 }
 
 // Shows the alert upon winning
 function box() {
+  console.log('executing box');
 
   alert(`Congratulations! You Won!
   All matches found in ${numMoves} moves and ${gameHours}:${gameMinutes}:${gameSeconds}`);
@@ -211,6 +222,7 @@ function box() {
 
 // Upon win executes stopTimer and box
 function win() {
+  console.log('executing win');
   // stop Timer
   if (matches === 8) {
     play = false;
@@ -227,13 +239,29 @@ function win() {
 }
 
 function gameRestart() {
-    play = true;
-    icon.removeClass();
-    card.toggleClass('open show');
-    playGame();
+  console.log('executing gameRestart');
+  stopTimer();
+  updateMoves();
+  $('#one-star').show();
+  $('#two-star').show();
+  $('#three-star').show();
+  play = true;
+  $('.deck').click(function() {
+    $(this).on("click");
+    console.log('card locked');
+  });
+
+  $('.card').click(function() {
+    $(this).on("click");
+    console.log('card locked');
+  });
+//  icon.removeClass();
+//  card.toggleClass('show match');
+  playGame();
 }
 
 function playGame() {
+  console.log('executing playGame');
   shuffle(array);
   makeDeck();
   clickCount(play);
@@ -244,6 +272,24 @@ function playGame() {
 $(document).ready(function() {
   playGame();
   restart.click(function() {
+    console.log('restart was clicked');
+    numMoves = 0;
+    matches = 0;
+    gameSeconds = 0;
+    gameMinutes = 0;
+    gameHours = 0;
+    numClickedCards = 0;
+    $('.deck').click(function() {
+      $(this).on("click");
+    });
+
+    $('.card').click(function() {
+      $(this).on("click");
+    });
+
+    if (!play) {
+      card.toggleClass('show match');
+    }
     gameRestart();
   });
 
