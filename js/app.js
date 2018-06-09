@@ -227,9 +227,10 @@ function win() {
 }
 
 function gameRestart() {
-  restart.click(function() {
-    icon.toggleClass('open show');
-  });
+    play = true;
+    icon.removeClass();
+    card.toggleClass('open show');
+    playGame();
 }
 
 function playGame() {
@@ -242,6 +243,10 @@ function playGame() {
 
 $(document).ready(function() {
   playGame();
+  restart.click(function() {
+    gameRestart();
+  });
+
 });
 
 
