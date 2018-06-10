@@ -14,8 +14,6 @@ let matches = 0;
 let clicksPerMatch = Math.floor(numClickedCards / matches);
 let numMoves = 0;
 let hideTime = 300;
-//let win = false;
-//let gameTimeBegin = new Date();
 
 // Shuffle the Cards
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -138,21 +136,27 @@ function hideNoMatch() {
 
 
 // Demote Star Rating based on metric
+let rating = "";
+
 function starRating() {
   console.log('acquiring star rating');
   if (numClickedCards <= 24) {
     console.log("You rate three stars");
+    rating = "3 stars";
     //$('.star').show();
   } else if (numClickedCards <= 48) {
     console.log("You rate two stars");
+    rating = "2 stars";
     $('#one-star').hide(); // instead of remove()
     hideTime = 240;
   } else if (numClickedCards <= 96){
     console.log("You rate one star");
+    rating = "1 star";
     $('#two-star').hide(); // instead of remove()
     hideTime = 192;
   } else {
     console.log("You rate no stars");
+    rating = "No stars";
     $('#three-star').hide(); // instead of remove
     hideTime = 154;
   }
@@ -213,11 +217,9 @@ function stopTimer() {
 // Shows the alert upon winning
 function box() {
   console.log('executing box');
-
   alert(`Congratulations! You Won!
-  All matches found in ${numMoves} moves and ${gameHours}:${gameMinutes}:${gameSeconds}`);
-
-
+  All matches found in ${numMoves} moves and ${gameHours}:${gameMinutes}:${gameSeconds}.
+  Your Star Rating is ${rating}.`);
 }
 
 // Upon win executes stopTimer and box
@@ -246,18 +248,6 @@ function gameRestart() {
   $('#two-star').show();
   $('#three-star').show();
   play = true;
-  $('.deck').click(function() {
-    $(this).on("click");
-    console.log('card locked');
-  });
-
-  $('.card').click(function() {
-    $(this).on("click");
-    console.log('card locked');
-  });
-//  icon.removeClass();
-//  card.toggleClass('show match');
-  playGame();
 }
 
 function playGame() {
@@ -273,33 +263,27 @@ $(document).ready(function() {
   playGame();
   restart.click(function() {
     console.log('restart was clicked');
+    const deck = $('.deck');
+    const card = $('.card');
+    const icon = $('.card > i');
+    const restart = $('.restart');
+    const stars = $('.stars');
     numMoves = 0;
     matches = 0;
     gameSeconds = 0;
     gameMinutes = 0;
     gameHours = 0;
     numClickedCards = 0;
-    $('.deck').click(function() {
-      $(this).on("click");
-    });
-
-    $('.card').click(function() {
-      $(this).on("click");
-    });
-
+    card.on("click");
     if (!play) {
       card.toggleClass('show match');
     }
     gameRestart();
+    playGame();
   });
 
 });
 
-
-
-// TODO: Set up clear timeout function to execute upon win
-// TODO: Add an alert to notify of win
-// TODO: Set up win function to stop timer and show modal
 // TODO: Add click listener to reset button
 
 /*
