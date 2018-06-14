@@ -242,7 +242,10 @@ function win() {
 
 function gameRestart() {
   console.log('executing gameRestart');
-  stopTimer();
+  $('#hours').text(00);
+  $('#minutes').text(00);
+  $('#seconds').text(00);
+  //stopTimer();
   updateMoves();
   $('#one-star').show();
   $('#two-star').show();
@@ -268,18 +271,19 @@ $(document).ready(function() {
     const icon = $('.card > i');
     const restart = $('.restart');
     const stars = $('.stars');
-    numMoves = 0;
-    matches = 0;
     gameSeconds = 0;
     gameMinutes = 0;
     gameHours = 0;
+    numMoves = 0;
+    matches = 0;
     numClickedCards = 0;
     card.on("click");
     if (!play) {
       card.toggleClass('show match');
     }
+    
     gameRestart();
-    playGame();
+    //playGame();
   });
 
 });
