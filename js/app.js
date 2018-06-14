@@ -234,6 +234,10 @@ function win() {
     stopTimer();
     box();
     //makeDeck();
+  } else {
+    $('.deck').click(function() {
+      $(this).on("click");
+    })
   }
   // execute modal with information
 
