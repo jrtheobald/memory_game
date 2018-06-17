@@ -220,3 +220,7 @@ $(document).ready(function () {
     playGame();
   });
 });
+
+//TODO: Find programmatic way to control clickability on open cards
+//TODO: Code a different, more customizable style dialog box for the alert
+//TODO: Find a way to restart a game without relaoding the page
