@@ -269,25 +269,26 @@ function playGame() {
 $(document).ready(function() {
   playGame();
   restart.click(function() {
-    console.log('restart was clicked');
-    const deck = $('.deck');
-    const card = $('.card');
-    const icon = $('.card > i');
-    const restart = $('.restart');
-    const stars = $('.stars');
-    gameSeconds = 0;
-    gameMinutes = 0;
-    gameHours = 0;
-    numMoves = 0;
-    matches = 0;
-    numClickedCards = 0;
-    card.on("click");
-    if (!play) {
-      card.toggleClass('show match');
-    }
+    location.reload();
+    // console.log('restart was clicked');
+    // const deck = $('.deck');
+    // const card = $('.card');
+    // const icon = $('.card > i');
+    // const restart = $('.restart');
+    // const stars = $('.stars');
+    // gameSeconds = 0;
+    // gameMinutes = 0;
+    // gameHours = 0;
+    // numMoves = 0;
+    // matches = 0;
+    // numClickedCards = 0;
+    // card.on("click");
+    // if (!play) {
+    //   card.toggleClass('show match');
+    // }
     
-    gameRestart();
-    playGame();
+     gameRestart();
+     playGame();
   });
 
 });
