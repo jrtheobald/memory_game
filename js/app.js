@@ -57,6 +57,7 @@ function clickCount(play) {
   if (play) {
     console.log("let's play");
     card.click(function() {
+      //$(this).one("click");
       numClickedCards += 1;
       numMoves = Math.floor(numClickedCards / 2);
       console.log("clicks: " + numClickedCards);
@@ -239,7 +240,6 @@ function win() {
       $(this).on("click");
     })
   }
-  // execute modal with information
 
 
 }
@@ -287,7 +287,7 @@ $(document).ready(function() {
     }
     
     gameRestart();
-    //playGame();
+    playGame();
   });
 
 });
