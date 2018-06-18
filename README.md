@@ -7,6 +7,7 @@
 * [Gameplay](#gameplay)
 * [Bugs](#bugs)
 * [Resources](#resources)
+* [Dependencies](#dependencies)
 
 ## Instructions
 
@@ -49,3 +50,10 @@ Starter code provided by Udacity.
 
 [Timer](https://codepad.co/snippet/YMYUDYgr "Timer")
 
+## Dependencies
+
+[Font Awesome](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css "Font Awesome")
+
+[Google Fonts](https://fonts.googleapis.com/css?family=Coda "Google Fonts Coda")
+
+[jQuery](http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js "jQuery")
